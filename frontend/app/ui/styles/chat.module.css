@@ -1,0 +1,54 @@
+.chatArea {
+    color: 'white';
+    border: 'none';
+    background-color: 'transparent';
+    resize: 'none';
+    overflow: 'auto';
+}
+
+.chatTitle {
+    display: flex;
+    position: sticky;
+    flex: 1;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+  
+.chatBubbles {
+    display: flex;
+    flex:12;
+    flex-direction: column;
+    margin: 10px 20px;
+    overflow: auto;
+}
+  
+.chatBar {
+    display: flex;
+    flex:1;
+    align-items: center;
+    border: 2px solid #939393;
+    border-radius: 25px;
+    margin: 10px;
+    gap: 10px;
+}
+
+.userMessage {
+    align-self: flex-end;
+    background-color: #dcf8c6; /* Color de fondo para mensajes del usuario */
+    margin: 4px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    max-width: 70%;
+}
+  
+.botMessage {
+    align-self: flex-start;
+    background-color: #f0f0f0; /* Color de fondo para mensajes del bot */
+    margin: 4px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    max-width: 70%;
+}
