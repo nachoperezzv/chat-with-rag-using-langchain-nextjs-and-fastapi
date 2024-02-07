@@ -45,7 +45,7 @@ archive.zip
 /coverage
 
 # next.js
-.next
+*.next
 /.next/
 /out/
 
