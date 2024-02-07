@@ -5,9 +5,10 @@ from fastapi.responses import JSONResponse
 
 from langchain_community.vectorstores import VectorStore
 
+from typing import List
+
 # Internal imports
 from api.services.documents import insert_doc_service
-
 from db.db import get_db
 
 router = APIRouter(
@@ -17,14 +18,14 @@ router = APIRouter(
 
 @router.post("")
 async def insert_doc(
-    file: UploadFile = File(...),
+    files: List[UploadFile] = File(...),
     vector_db: VectorStore = Depends(get_db)
 ) -> JSONResponse:
     """
     Handles Endpoint for the insertion of a new PDF doc
     """
     try:
-        doc_ids = insert_doc_service(file, vector_db)
+        doc_ids = insert_doc_service(files, vector_db)
         return JSONResponse(
             status_code=200,
             content={"doc_ids": doc_ids}

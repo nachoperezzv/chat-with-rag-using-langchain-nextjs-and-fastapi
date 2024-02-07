@@ -1,23 +1,25 @@
 # Third-party imports
-from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.vectorstores import VectorStore
 
 # Internal imports
-from schemas.document import Document
+from schemas.document import Documents
 from api.helpers.documents import (
     save_file, 
     save_file_embedding
 )
 
 
-def insert_doc_service(file:Document, vector_db:VectorStore) -> list[str]:
+def insert_doc_service(files:Documents, vector_db:VectorStore) -> list:
     """
     Handles the inyection of new documents into the vector store
     """
-    filepath = save_file(file)
-    doc_ids = save_file_embedding(filepath, vector_db)
+    docs = []
+    for file in files:
+        filepath = save_file(file)
+        doc_ids = save_file_embedding(filepath, vector_db)
 
-    return doc_ids
+        docs.append(doc_ids)
     
+    return docs
 
 

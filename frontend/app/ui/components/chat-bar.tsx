@@ -11,12 +11,13 @@ interface ChatBarProps {
 
 const ChatBar: React.FC<ChatBarProps> = ({ onSendMessage }) => {
   const [message, setMessage] = useState('');
-  const [file, setFile] = useState<File | null>(null);
+  const [files, setFiles] = useState<File[] | null>(null);
 
   const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFile(e.target.files[0]);
-      await uploadFile(e.target.files[0]); 
+      const selectedFiles = Array.from(e.target.files)
+      setFiles(selectedFiles);
+      await uploadFiles(selectedFiles); 
     }
   };
 
@@ -47,14 +48,16 @@ const ChatBar: React.FC<ChatBarProps> = ({ onSendMessage }) => {
     }
   };
 
-  const uploadFile = async (selectedFile: File) => {
-    if (!selectedFile) {
+  const uploadFiles = async (selectedFiles: File[]) => {
+    if (!selectedFiles) {
       alert('Por favor, selecciona un archivo primero.');
       return;
     }
 
     const formData = new FormData();
-    formData.append('file', selectedFile);
+    selectedFiles.forEach(file => {
+      formData.append('file', file);
+    });
 
     try {
       const response = await fetch('http://localhost:8000/document', {
