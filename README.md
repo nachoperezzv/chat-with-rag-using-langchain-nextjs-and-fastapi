@@ -6,7 +6,7 @@ In order to develop this simple interface we have used FastAPI as a framework fo
 
 This project has a simple user interface. The main goal is not to show any espectacular UI/UX but to show how much it is possible to do with very few lines of code.
 
-**insert video here**
+![Chat GIF](./assets/Chat_Video.gif)
 
 The project is thought to be simple, so you won't need to create any kind of database or create any services, everything from storing documents and chats will use local memory. Please note this as the project is not based on efficiency.
 
@@ -24,6 +24,10 @@ Install the dependencies:
 
 ```bash
 npm install
+```
+
+```bash
+npm run build
 ```
 
 Run:
@@ -84,14 +88,14 @@ python main.py
 
 1. Once you have the chat running you should provide the documents you want. Click in the paperclip icon and select the document you want. Make sure it is a .pdf file.
 
-   ![Load file](./backend/assets/load_file.png)
+   ![Load file](./assets/load_file.png)
 
-Wait until an alert appears indicating if everything is correct.
+    > <small>*Wait until an alert appears indicating if everything is correct*.</small>
 
 2. Now you can start chatting. But please, note that `enter` is not used to send the message but to insert a newline. So in order to send the message, be sure to click the button send on the right corner of the Chat Bar.
 
-    ![Send Message](./backend/assets/send_message.png)
+    ![Send Message](./assets/send_message.png)
 
 
 3. Use the Chat Bar to write whatever you want. 
-    ![Chat Bar](./backend/assets/chat_bar.png)
+    ![Chat Bar](./assets/chat_bar.png)
