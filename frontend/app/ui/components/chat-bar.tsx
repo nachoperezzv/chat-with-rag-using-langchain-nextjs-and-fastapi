@@ -13,9 +13,10 @@ const ChatBar: React.FC<ChatBarProps> = ({ onSendMessage }) => {
   const [message, setMessage] = useState('');
   const [file, setFile] = useState<File | null>(null);
 
-  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setFile(e.target.files[0]);
+      await uploadFile(e.target.files[0]); 
     }
   };
 
@@ -46,14 +47,14 @@ const ChatBar: React.FC<ChatBarProps> = ({ onSendMessage }) => {
     }
   };
 
-  const uploadFile = async () => {
-    if (!file) {
+  const uploadFile = async (selectedFile: File) => {
+    if (!selectedFile) {
       alert('Por favor, selecciona un archivo primero.');
       return;
     }
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('file', selectedFile);
 
     try {
       const response = await fetch('http://localhost:8000/document', {
@@ -99,9 +100,9 @@ const ChatBar: React.FC<ChatBarProps> = ({ onSendMessage }) => {
                 onChange={onFileChange}
               />
             </label>
-            <button onClick={uploadFile} disabled={!file}>
+            {/* <button onClick={uploadFile} disabled={!file}>
               Subir Documento
-            </button>
+            </button> */}
           </form>
           <form
             onSubmit={sendMessage} 
